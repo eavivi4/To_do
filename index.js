@@ -9,4 +9,17 @@ addButton.addEventListener('click', function() {
     paragraph.innerText = user_input.value;
     // Add this element into the container for the to do list
     container.appendChild(paragraph);
+    // Empty input
+    user_input.value = "";
+
+    // Clicking on an element, line through
+    paragraph.addEventListener('click', function() {
+        paragraph.style.textDecoration = "line-through";
+    })
+
+    // Double clicking an element, remove
+    paragraph.addEventListener('dblclick', function() {
+        container.removeChild(paragraph);
+    })
 })
+
