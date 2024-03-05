@@ -1,0 +1,41 @@
+body {
+    background-color: #FFE6E6;
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    color: #E1AFD1;
+    font-size: 2.5rem;
+}
+
+.container {
+    color: #AD88C6;
+}
+
+#user_in {
+    color: #7469B6;
+    background-color: #FFE6E6;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+button {
+    background-color: #7469B6;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 0.85rem;
+}
+
+.arrow {
+    border: solid #E1AFD1;
+    border-width: 0 5px 5px 0;
+    display: inline-block;
+    padding: 2px;
+  }
+  
+  .right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
