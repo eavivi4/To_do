@@ -39,3 +39,17 @@ button {
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
   }
+  .element {
+    display: flex;
+  }
+  .check_button {
+    background-color: #FFE6E6;
+    margin: 10px 10px 10px 0;
+    height: 20px;
+    border-radius: 0;
+    border: solid;
+  }
+
+  #checked {
+    background-color: #7469B6;
+  }
