@@ -7,9 +7,9 @@
 - Double clicking a box next to an item would unfill the box.
 
 
-**Examples of uses**
-## Groceries list
+# Examples of uses
+**Groceries list**
 ![image info](Groceries.jpg)
 
-## Task list
+**Task list**
 ![image info](Tasks.jpg)
