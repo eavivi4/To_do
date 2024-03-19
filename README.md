@@ -8,8 +8,10 @@
 
 
 # Examples of uses
-**Groceries list**
-![image info](Groceries.jpg)
+## Groceries list
 
-**Task list**
-![image info](Tasks.jpg)
+<img src= "Groceries.jpg" height = 500 width = 1000>
+
+## Task list
+
+<img src= "Tasks.jpg" height = 500 width = 1000>
