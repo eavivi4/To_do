@@ -1,0 +1,24 @@
+{
+  "name": "to_do",
+  "version": "1.0.0",
+  "description": "**A versatile personal to do list with functions such as strike through, colored boxes and elimination of items.**\r - Clicking an item would strike through that item.\r - Double clicking an item would eliminate item from list.\r - Clicking a box next to an item would fill in that box.\r - Double clicking a box next to an item would unfill the box.",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.18.1",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "dotenv": "^17.2.0",
+    "nodemon": "^3.1.10"
+  }
+}
