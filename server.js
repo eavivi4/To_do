@@ -50,12 +50,36 @@ app.get('/', (req, res) => {
     res.redirect('/login')
 })
 
-// Render HTML file
+// Have styles and index.js available
 app.use(express.static(path.join(__dirname, 'public')))
+
+// Protect index.html by checking authentication
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+}
+
+// Render HTML file
+app.get('/todo', checkAuthenticated, (req, res) => {
+  res.sendFile(path.join(__dirname, 'private', 'index.html'));
+});
 
 // Render the login page
 app.get('/login', (req, res) => {
     res.render('login.ejs')
+})
+
+// Render log out
+app.get('/logout', (req, res) => {
+    req.logout(err => {
+        if (err)
+            {
+                return next(err);
+            } 
+        res.redirect('/login');
+    });
 })
 
 // Render the register page
@@ -90,7 +114,7 @@ app.post('/register', async (req, res) => {
 app.post('/login', passport.authenticate('local', {
 
     // Authenication success redirect
-    successRedirect: 'index.html',
+    successRedirect: '/todo',
 
     // Authentication failure redirect
     failureRedirect: '/login',
