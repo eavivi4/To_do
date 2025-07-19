@@ -13,7 +13,7 @@ h1 {
     color: #AD88C6;
 }
 
-#user_in {
+#user_in, #name, #email, #password {
     color: #7469B6;
     background-color: #FFE6E6;
     border-radius: 10px;
