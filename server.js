@@ -12,24 +12,29 @@ const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
 const path = require('path')
+const mongoose = require('mongoose')
+const User = require('./models/user')
 
 // Get function from passport-config and 
 // initialize function to find users based on email and id
 const initializePassport = require('./passport-config')
 initializePassport(passport, 
-    email => users.find(user => user.email === email),
-    id => users.find(user => user.id === id)
+    async email => await User.findOne({email}),
+    async id => await User.findById(id)
 )
-
-// User array
-const users = []
 
 // Add ejs sythax
 app.set('view-engine', 'ejs')
 // Access email and password inside request variable in post request
 app.use(express.urlencoded({extended: false}))
 
-
+// Connect to local MongoDB
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log('Connected to local MongoDB'))
+.catch(err => console.error(err));
 
 // Use libraries
 app.use(flash())
@@ -89,18 +94,28 @@ app.get('/register', (req, res) => {
 
 app.post('/register', async (req, res) => {
 
-    // req.body.name, req.body.email, req.body.password are 
-    // from the ejs file, what comes after name="..." for each element
     try {
+        
+        const { email, password } = req.body;
+
+        // Check if user already exists by email since it is unique
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).send('User already exists');
+        }
 
         // Hash password, 10 is default secure value to hash
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
-        users.push({
-            id: Date.now().toString(),
+
+        // Put information into User object
+        const newUser = new User({
             name: req.body.name,
             email: req.body.email,
             password: hashedPassword
         })
+        
+        // Save User into database
+        await newUser.save();
 
         // Redirect to login page after success
         res.redirect('/login')
